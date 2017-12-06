@@ -47,6 +47,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         self.tableView.sectionFooterHeight = 40
         self.tableView.sectionHeaderHeight = 0
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+
         
         self.tableView.reloadData()
         setupHeader()
@@ -60,14 +61,15 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     func setupLogoInTop() {
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 45))
-        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 45))
+        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         let logo = #imageLiteral(resourceName: "setlistify_logo")
         imageView.image = logo
         
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         self.navigationItem.titleView = imageView
     }
     
@@ -145,6 +147,16 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     //MARK: Actions
     @IBAction func AddSetlistToSpotifyTapped(_ sender: Any) {
         guard let setlist = self.selectedSetList else { return }
+        
+        //if setlist has no songs, dont create a playlist
+        if setlist.sets.songCount() == 0 {
+            let myalert = UIAlertController(title: "Sorry", message: "There hasn't been any songs registered to this set currently. Please go to Setlist.fm to add songs.", preferredStyle: UIAlertControllerStyle.alert)
+            myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                //do something
+            })
+            self.present(myalert, animated: true)
+            return
+        }
         
         let spinner = SpinnerView.showSpinner(inButton: self.addSetlistButton)
         addSetlistButton.setTitle("", for: .normal)
@@ -331,9 +343,12 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         }
         else {
             
+            self.title = ""
+            
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistViewController") as! SetlistViewController
             vc.dataSource = similarSets
             vc.selectedSetIndex = indexPath.row
+            vc.title = ""
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

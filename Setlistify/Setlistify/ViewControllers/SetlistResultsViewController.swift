@@ -25,6 +25,31 @@ class SetlistResultsViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if artistSearch.count > 0 {
+            self.title = artistSearch
+        }
+        else {
+            setupLogoInTop()
+        }
+    }
+    
+    func setupLogoInTop() {
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 45))
+        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        let logo = #imageLiteral(resourceName: "setlistify_logo")
+        imageView.image = logo
+        
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        self.navigationItem.titleView = imageView
+    }
+    
     func fetchDataAPI() {
         guard let data = dataSource else { return }
         SetlistConnectionManager.search(with: artistSearch, venue: venueSearch, pageNumber: currentPage) { (response) in
@@ -70,13 +95,12 @@ class SetlistResultsViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if dataSource?.setlist[indexPath.row].sets.songCount() ?? 0 > 0 {
-            
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistViewController") as! SetlistViewController
-            vc.dataSource = dataSource
-            vc.selectedSetIndex = indexPath.row
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        self.title = ""
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistViewController") as! SetlistViewController
+        vc.dataSource = dataSource
+        vc.selectedSetIndex = indexPath.row
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

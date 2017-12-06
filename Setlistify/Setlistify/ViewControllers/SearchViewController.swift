@@ -137,6 +137,8 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
                 print(data.itemsPerPage)
                 
                 if data.total > 0 {
+                    self.title = ""
+                    
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistResultsViewController") as! SetlistResultsViewController
                     vc.dataSource = data
                     vc.artistSearch = self.artistTextField.text ?? ""

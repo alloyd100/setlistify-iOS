@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SearchViewController.swift"
-            timestampString = "534256560.530175"
+            timestampString = "534258902.825217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "textFieldShouldReturn(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
-            timestampString = "534256560.53031"
+            timestampString = "534258902.825552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
-            timestampString = "534256560.530414"
+            timestampString = "534258902.825607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
             landmarkType = "7">
             <Locations>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
-            timestampString = "534256560.530506"
+            timestampString = "534258902.825656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
             landmarkType = "7">
             <Locations>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
-            timestampString = "534256560.530604"
+            timestampString = "534258902.825703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
-            timestampString = "534256560.530698"
+            timestampString = "534258902.825747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "getTrackFor(artist:trackName:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SetlistResultsViewController.swift"
-            timestampString = "534256560.53076"
+            timestampString = "534258902.825797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "fetchDataAPI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SetlistResultsViewController.swift"
-            timestampString = "534256560.530808"
+            timestampString = "534258902.825854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "fetchDataAPI()"
             landmarkType = "7">
             <Locations>
@@ -231,8 +231,8 @@
                   symbolName = "Setlistify.SetlistResultsViewController.fetchDataAPI() -&gt; ()"
                   moduleName = "Setlistify"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ViewControllers/SetlistResultsViewController.swift"
-                  timestampString = "534256560.852703"
+                  urlString = "file:///Users/andrewlloydnodes/setlistify-iOS/Setlistify/Setlistify/ViewControllers/SetlistResultsViewController.swift"
+                  timestampString = "534257655.419437"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "30"
@@ -246,8 +246,8 @@
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Setlistify.SetlistSearchResponse&gt;) -&gt; () in Setlistify.SetlistResultsViewController.fetchDataAPI() -&gt; ()"
                   moduleName = "Setlistify"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ViewControllers/SetlistResultsViewController.swift"
-                  timestampString = "534256560.855323"
+                  urlString = "file:///Users/andrewlloydnodes/setlistify-iOS/Setlistify/Setlistify/ViewControllers/SetlistResultsViewController.swift"
+                  timestampString = "534257655.422064"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SetlistResultsViewController.swift"
-            timestampString = "534256560.530852"
+            timestampString = "534258902.825899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "fetchDataAPI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -280,43 +280,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
-            timestampString = "534256560.531681"
+            timestampString = "534258902.825943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "playTrack(song:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534258902.826262"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "playTrack(song:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534258902.826506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "380"
             endingLineNumber = "380"
-            landmarkName = "playTrack(song:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
-            timestampString = "534256560.532167"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
-            landmarkName = "playTrack(song:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
-            timestampString = "534256560.532652"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
             landmarkName = "audioStreaming(_:didChangePlaybackStatus:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
-            timestampString = "534256560.533278"
+            timestampString = "534258902.826752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -344,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
-            timestampString = "534256560.533749"
+            timestampString = "534258902.826989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "stopPlaying()"
             landmarkType = "7">
          </BreakpointContent>
@@ -359,13 +359,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
-            timestampString = "534256560.534638"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534258902.827228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "tableView(_:heightForRowAt:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534258902.82728"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534258902.827328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "getData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

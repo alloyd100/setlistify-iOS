@@ -28,6 +28,11 @@ struct SpotifyConnectionManager {
             var count = 0
             var completionSetCount = setlist.sets.songCount()
 
+            if setlistWithSpotify.sets.setArray.count == 0 {
+                completion(setlistWithSpotify)
+                return
+            }
+            
             for setIndex in 0..<setlistWithSpotify.sets.setArray.count {
                 
                 let set = setlistWithSpotify.sets.setArray[setIndex]
