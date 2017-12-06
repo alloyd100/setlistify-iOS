@@ -1,0 +1,11 @@
+framework module Nodes {
+  umbrella header "Nodes.h"
+
+  export *
+  module * { export * }
+}
+
+module Nodes.Swift {
+    header "Nodes-Swift.h"
+    requires objc
+}

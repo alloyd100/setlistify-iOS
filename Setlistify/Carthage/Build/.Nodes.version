@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.0.1",
+  "iOS" : [
+    {
+      "name" : "Nodes",
+      "hash" : "c2dcc3217b0cb1d76428c7146232601d4f0199e37d3cdc1226ff449bc8494417"
+    }
+  ]
+}

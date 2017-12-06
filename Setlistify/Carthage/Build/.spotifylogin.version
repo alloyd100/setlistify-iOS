@@ -1,0 +1,9 @@
+{
+  "commitish" : "0.1.6",
+  "iOS" : [
+    {
+      "name" : "SpotifyLogin",
+      "hash" : "5979e2295aaa41de6cb7096e712b3efd5732f41ca8f63b88b2f43359f2af7da9"
+    }
+  ]
+}

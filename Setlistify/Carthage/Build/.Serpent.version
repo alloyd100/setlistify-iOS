@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.1.1",
+  "iOS" : [
+    {
+      "name" : "Serpent",
+      "hash" : "631e794092ea1d1255e7a4267d8a798d914f998e60a4773fe13e135a10acfb5e"
+    }
+  ]
+}

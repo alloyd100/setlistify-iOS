@@ -1,0 +1,11 @@
+framework module Spinner {
+  umbrella header "Spinner.h"
+
+  export *
+  module * { export * }
+}
+
+module Spinner.Swift {
+    header "Spinner-Swift.h"
+    requires objc
+}

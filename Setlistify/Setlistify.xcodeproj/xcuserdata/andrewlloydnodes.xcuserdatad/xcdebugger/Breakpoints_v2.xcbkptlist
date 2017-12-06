@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SearchViewController.swift"
+            timestampString = "534256560.530175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534256560.53031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534256560.530414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in static Setlistify.SpotifyConnectionManager.addSpotifyInfoToSetlist(setlist: Setlistify.Setlist, completion: (Setlistify.Setlist) -&gt; ()) -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+                  timestampString = "534174110.267026"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "2024">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SPTTrack&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in static Setlistify.SpotifyConnectionManager.addSpotifyInfoToSetlist(setlist: Setlistify.Setlist, completion: (Setlistify.Setlist) -&gt; ()) -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+                  timestampString = "534174110.269076"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTTrack&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in static Setlistify.SpotifyConnectionManager.addSpotifyInfoToSetlist(setlist: Setlistify.Setlist, completion: (Setlistify.Setlist) -&gt; ()) -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+                  timestampString = "534174110.270791"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SPTTrack&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTTrack&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in static Setlistify.SpotifyConnectionManager.addSpotifyInfoToSetlist(setlist: Setlistify.Setlist, completion: (Setlistify.Setlist) -&gt; ()) -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+                  timestampString = "534174110.272631"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534256560.530506"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in static Setlistify.SpotifyConnectionManager.addSpotifyInfoToSetlist(setlist: Setlistify.Setlist, completion: (Setlistify.Setlist) -&gt; ()) -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+                  timestampString = "534174124.799542"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "2296">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SPTTrack&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SPTArtist&gt;) -&gt; () in static Setlistify.SpotifyConnectionManager.addSpotifyInfoToSetlist(setlist: Setlistify.Setlist, completion: (Setlistify.Setlist) -&gt; ()) -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+                  timestampString = "534174124.80149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534256560.530604"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "addSpotifyInfoToSetlist(setlist:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ConnectionManagers/SpotifyConnectionManager.swift"
+            timestampString = "534256560.530698"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "getTrackFor(artist:trackName:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistResultsViewController.swift"
+            timestampString = "534256560.53076"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "fetchDataAPI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistResultsViewController.swift"
+            timestampString = "534256560.530808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetchDataAPI()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Setlistify.SetlistResultsViewController.fetchDataAPI() -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ViewControllers/SetlistResultsViewController.swift"
+                  timestampString = "534256560.852703"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Setlistify.SetlistSearchResponse&gt;) -&gt; () in Setlistify.SetlistResultsViewController.fetchDataAPI() -&gt; ()"
+                  moduleName = "Setlistify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewlloydnodes/Setlistify/Setlistify/ViewControllers/SetlistResultsViewController.swift"
+                  timestampString = "534256560.855323"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistResultsViewController.swift"
+            timestampString = "534256560.530852"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "fetchDataAPI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534256560.531681"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "playTrack(song:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534256560.532167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
+            landmarkName = "playTrack(song:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534256560.532652"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
+            landmarkName = "audioStreaming(_:didChangePlaybackStatus:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534256560.533278"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534256560.533749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "stopPlaying()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Setlistify/ViewControllers/SetlistViewController.swift"
+            timestampString = "534256560.534638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

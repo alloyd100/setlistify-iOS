@@ -1,0 +1,7 @@
+github "nodes-ios/Serpent"
+github "nodes-ios/Nodes"
+github "nodes-ios/KeyboardHelper"
+github "onevcat/Kingfisher"
+github "SVProgressHUD/SVProgressHUD"
+github "spotify/spotifylogin"
+github "nodes-ios/Spinner"

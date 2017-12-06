@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.1.3",
+  "iOS" : [
+    {
+      "name" : "Spinner",
+      "hash" : "c9d5aec979d49f379b89f991957b0129b1145cab66cd5969601e4a4338c42f24"
+    }
+  ]
+}

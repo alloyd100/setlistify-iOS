@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.2.2",
+  "iOS" : [
+    {
+      "name" : "Cashier",
+      "hash" : "148d369a654e7c47b338eb9db25e8153fc8fd869d3fa8d0889e11baebe1a310e"
+    }
+  ]
+}
