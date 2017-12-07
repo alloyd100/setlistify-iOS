@@ -18,9 +18,25 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     var playingTrack: SPTTrack? {
         didSet {
             self.updateNowPlayingCenter(title: playingTrack?.name ?? "", artist: playingTrack?.artistsString() ?? "", albumURL: playingTrack?.album.largestCover.imageURL, currentTime: 0, songLength: NSNumber(value: playingTrack?.duration ?? 0.0))
-            self.tableView.reloadData()
+            
+            var rows: [IndexPath] = []
+            if let track = playingTrack {
+                if let ip = self.indexPathForTrack(track: track) {
+                    rows.append(ip)
+                }
+                
+            }
+            if let track = oldValue {
+                if let ip = self.indexPathForTrack(track: track) {
+                    rows.append(ip)
+                }
+            }
+            
+            self.tableView.reloadRows(at: rows, with: UITableViewRowAnimation.automatic)
         }
     }
+    var pausedTrack: SPTTrack?
+    var currentPlaybackPosition: TimeInterval = TimeInterval()
     
     var similarSets: SetlistSearchResponse?
     var similarSetsCurrentPage = 1
@@ -58,8 +74,18 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         getData()
         getSimilarSetsData()
         setupLogoInTop()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         SpotifyConnectionManager.logInToPlayer(setlistVC: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.pauseTrack()
+        self.stopPlaying()
     }
     
     func setupLogoInTop() {
@@ -147,6 +173,41 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
                 self.present(myalert, animated: true)
             }
         }
+    }
+    
+    func trackForIndexPath(indexPath: IndexPath) -> SPTTrack? {
+        
+        let setCount = selectedSetList?.sets.setArray.count ?? 0
+        if indexPath.section < setCount {
+            if let set = selectedSetList?.sets.setArray[indexPath.section] {
+                let song = set.song[indexPath.row]
+                return song.spotifyTrack
+            }
+        }
+
+        return nil
+    }
+    
+    func indexPathForTrack(track: SPTTrack) -> IndexPath? {
+        
+        let setCount = selectedSetList?.sets.setArray.count ?? 0
+        
+        if let visibleIndexPaths = self.tableView.indexPathsForVisibleRows {
+            
+            for indexPath in visibleIndexPaths {
+                
+                if indexPath.section < setCount {
+                    if let set = selectedSetList?.sets.setArray[indexPath.section] {
+                        let song = set.song[indexPath.row]
+                        if track.name == (song.spotifyTrack?.name ?? "") {
+                            return indexPath
+                        }
+                    }
+                }
+            }
+        }
+        
+        return nil
     }
     
     //MARK: Actions
@@ -287,7 +348,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         headerView.backgroundColor = UIColor.gray.withAlphaComponent(0.95)
         
         let headerLabel = UILabel(frame: CGRect(x: 10, y: 10, width:
-            tableView.bounds.size.width, height: 40))
+            tableView.bounds.size.width - 20, height: 40))
         headerLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         headerLabel.textColor = UIColor.white
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
@@ -335,10 +396,23 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             let cell: SongTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SongCell") as! SongTableViewCell
             if let set = selectedSetList?.sets.setArray[indexPath.section] {
                 let song = set.song[indexPath.row]
-                let playingThisSong = playingTrack?.name == song.name
-
+                let playingThisSong = playingTrack?.name == (song.spotifyTrack?.name ?? "")
+                
                 let optionalAlbumString = SpotifyConnectionManager.authToken.count > 0 ? "(Unavailable on Spotify)" : ""
-                cell.populateCell(with: song.name, albumName: song.spotifyTrack?.album.name ?? optionalAlbumString, imageURL: song.spotifyTrack?.album.largestCover.imageURL, info: song.fullInfo(), spotifySupport: song.spotifyTrack != nil, playing: playingThisSong)
+                
+                if let sptTrack = song.spotifyTrack {
+                    
+                    var albumString = optionalAlbumString
+                    var url: URL?
+                    if let album = sptTrack.album {
+                        albumString = album.name
+                        url = album.largestCover.imageURL
+                    }
+                    cell.populateCell(with: song.name, albumName: albumString, imageURL: url, info: song.fullInfo(), spotifySupport: true, playing: playingThisSong)
+                }
+                else {
+                    cell.populateCell(with: song.name, albumName: optionalAlbumString, imageURL: nil, info: song.fullInfo(), spotifySupport: false, playing: false)
+                }
             }
             
             return cell
@@ -379,17 +453,46 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         if indexPath.section < setCount {
             if let set = selectedSetList?.sets.setArray[indexPath.section] {
                 let song = set.song[indexPath.row]
+                //dont turn off song if cell doesnt have a replacement track
+                guard let _ = song.spotifyTrack else { return }
+                guard let player = self.player else { return }
                 
-                if let playing =  self.playingTrack {
-                    if song.spotifyTrack?.identifier == playing.identifier {
-                        pauseTrack()
+                var isPlaying = true
+                if let state = player.playbackState {
+                    isPlaying = state.isPlaying
+                }
+
+                if isPlaying {
+                    
+                    //if selected playing track
+                    if let playingTrack = self.playingTrack {
+                        if playingTrack.identifier == song.spotifyTrack?.identifier {
+                            self.pauseTrack()
+                        }
+                        else {
+                            self.playTrack(song: song)
+                        }
+                    }
+                    else {
+                        playTrack(song: song)
                     }
                 }
                 else {
-                    self.playTrack(song: song)
+                    
+                    //NOT PLAYING
+                    //if selected paused track
+                    if let pausedTrack = self.pausedTrack {
+                        if pausedTrack.identifier == song.spotifyTrack?.identifier {
+                            self.resumeTrack()
+                        }
+                        else {
+                            self.playTrack(song: song)
+                        }
+                    }
+                    else {
+                         self.playTrack(song: song)
+                    }
                 }
-                
-                
             }
         }
         else {
@@ -427,12 +530,6 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         print("logged in to player")
     }
     
-    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        if !isPlaying {
-            //stopPlaying()
-        }
-    }
-    
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: String!) {
 
         if let tracks = self.selectedSetList?.sets.fullSongSpotifyIds() as? [SPTTrack] {
@@ -441,8 +538,19 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
                     self.playingTrack = track
                 }
             }
-            
-            self.tableView.reloadData()
+        }
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePosition position: TimeInterval) {
+        self.currentPlaybackPosition = position
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        if !isPlaying {
+            self.playingTrack = nil
+        }
+        else {
+            self.pausedTrack = nil
         }
     }
     
@@ -451,22 +559,24 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     }
     
     func pauseTrack() {
+        self.pausedTrack = self.playingTrack
+        self.playingTrack = nil
         self.player?.setIsPlaying(false, callback: { (error) in
             if error != nil {
                 print("pause failed")
             }
-            
-            
-            self.playingTrack = nil
-            self.tableView.reloadData()
         })
     }
     
     func resumeTrack() {
+        self.playingTrack = self.pausedTrack
+        self.pausedTrack = nil
         self.player?.setIsPlaying(true, callback: { (error) in
             if error != nil {
                 print("pause failed")
             }
+
+            self.updateNowPlayingCenter(title: self.playingTrack?.name ?? "", artist: self.playingTrack?.artistsString() ?? "", albumURL: self.playingTrack?.album.largestCover.imageURL, currentTime: NSNumber(value: self.currentPlaybackPosition), songLength: NSNumber(value: self.playingTrack?.duration ?? 0.0))
         })
     }
     
@@ -488,47 +598,46 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     func stopPlaying() {
         self.playingTrack = nil
-        self.tableView.reloadData()
     }
     
     func playTrack(song: Song) {
         guard let trackID = song.spotifyTrack?.identifier
             else { return }
+        
 
         self.player?.playSpotifyURI("spotify:track:" + trackID, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if (error != nil) {
                 print("failed!")
             }
             UIApplication.shared.beginReceivingRemoteControlEvents()
-            self.playingTrack = song.spotifyTrack
             
             //queue remaining tracks
-            if let tracks = self.selectedSetList?.sets.fullSongSpotifyIds() as? [SPTTrack] {
-                var index = 0
-                for (count, track) in tracks.enumerated() {
-                    if track.identifier == song.spotifyTrack?.identifier {
-                        index = count
-                        break
-                    }
-                }
-                
-                //last track, dont need to queue any
-                if index + 1 >= tracks.count {
-                    return
-                }
-                
-                let totalTracks = tracks.count - 1
-                let subset = tracks[index + 1...totalTracks]
-                let queueArray : [SPTTrack] = Array(subset).reversed()
-                for (index, track) in queueArray.enumerated() {
-                    
-                    //hack to get around call limit spotify has
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(index), execute: {
-                        self.queueTrack(track: track)
-                    })
-                    
-                }
-            }
+//            if let tracks = self.selectedSetList?.sets.fullSongSpotifyIds() as? [SPTTrack] {
+//                var index = 0
+//                for (count, track) in tracks.enumerated() {
+//                    if track.identifier == song.spotifyTrack?.identifier {
+//                        index = count
+//                        break
+//                    }
+//                }
+//
+//                //last track, dont need to queue any
+//                if index + 1 >= tracks.count {
+//                    return
+//                }
+//
+//                let totalTracks = tracks.count - 1
+//                let subset = tracks[index + 1...totalTracks]
+//                let queueArray : [SPTTrack] = Array(subset)
+//                for (index, track) in queueArray.enumerated() {
+//
+//                    //hack to get around call limit spotify has
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(index), execute: {
+//                        self.queueTrack(track: track)
+//                    })
+//
+//                }
+//            }
         })
     }
     
@@ -615,11 +724,8 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     }
     
     func downloadImage(url: URL, completion: @escaping ((UIImage?) -> Void)) {
-        print("Download Started")
         getDataFromUrl(url: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() {
                 completion(UIImage(data: data))
             }

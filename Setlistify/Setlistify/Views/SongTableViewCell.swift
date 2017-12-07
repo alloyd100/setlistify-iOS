@@ -35,6 +35,9 @@ class SongTableViewCell: UITableViewCell {
         if let url = imageURL {
             albumCoverImageView.kf.setImage(with: url, placeholder: UIImage(named: "gigBackground"), options: nil, progressBlock: nil, completionHandler: nil)
         }
+        else {
+            albumCoverImageView.image = #imageLiteral(resourceName: "gigBackground")
+        }
         infoLabel.text = info
         
         playButton.isHidden = !spotifySupport

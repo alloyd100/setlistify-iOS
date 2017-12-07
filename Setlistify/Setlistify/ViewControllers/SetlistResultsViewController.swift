@@ -76,14 +76,17 @@ class SetlistResultsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource?.setlist.count ?? 0
+        return dataSource?.total ?? 0//dataSource?.setlist.count ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SetlistTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SetlistCell") as! SetlistTableViewCell
-        if let setlist = dataSource?.setlist[indexPath.row] {
-            cell.populateCell(with: setlist.artist.name, venue: setlist.venue.name, songCount: setlist.sets.songCount(), dateString: setlist.eventDate)
+        
+        if (dataSource?.setlist.count ?? 0) - 1 > indexPath.row {
+            if let setlist = dataSource?.setlist[indexPath.row] {
+                cell.populateCell(with: setlist.artist.name, venue: setlist.venue.name, songCount: setlist.sets.songCount(), dateString: setlist.eventDate)
+            }
         }
         
         return cell

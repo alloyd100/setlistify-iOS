@@ -217,6 +217,7 @@ struct SpotifyConnectionManager {
         setlistVC.player = SPTAudioStreamingController.sharedInstance()
         setlistVC.player?.delegate = setlistVC
         setlistVC.player?.playbackDelegate = setlistVC
+
         do {
             try setlistVC.player?.start(withClientId: "75de10a1a38b4feaa8ea4a941bb7362f")
         }

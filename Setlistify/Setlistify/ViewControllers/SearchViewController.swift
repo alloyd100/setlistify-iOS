@@ -108,7 +108,7 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
             }
         }
         
-        self.loginButton?.setTitle("Logged In", for: .normal)
+        self.loginButton?.setTitle("Activated", for: .normal)
         self.loginButton?.isEnabled = false
         print("Login Succesful")
     }
