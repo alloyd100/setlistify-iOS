@@ -10,12 +10,14 @@ import UIKit
 import Spinner
 import Kingfisher
 import MediaPlayer
+import SpotifyLogin
 
-class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
+class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate, MPMediaPickerControllerDelegate {
     
     var player: SPTAudioStreamingController?
-    var playingTrack: Song? {
+    var playingTrack: SPTTrack? {
         didSet {
+            self.updateNowPlayingCenter(title: playingTrack?.name ?? "", artist: playingTrack?.artistsString() ?? "", albumURL: playingTrack?.album.largestCover.imageURL, currentTime: 0, songLength: NSNumber(value: playingTrack?.duration ?? 0.0))
             self.tableView.reloadData()
         }
     }
@@ -40,6 +42,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     @IBOutlet weak var addSetlistButton: UIButton!
     @IBOutlet weak var addSetlistWidthConstraint: NSLayoutConstraint!
 
+    var gradientLayer: CAGradientLayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +64,9 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     func setupLogoInTop() {
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 45))
-        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 45))
+        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
         let logo = #imageLiteral(resourceName: "setlistify_logo")
         imageView.image = logo
@@ -71,6 +74,17 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         self.navigationItem.titleView = imageView
+        
+        self.gradientLayer = CAGradientLayer()
+        
+        gradientLayer?.frame = CGRect(x: 0, y: 0, width: 1000, height: 450)
+        gradientLayer?.masksToBounds = true
+        let color1 = (UIColor.clear.cgColor) as CGColor
+        let color2 = (UIColor.white.cgColor) as CGColor
+        gradientLayer?.colors = [color1, color2]
+        
+        self.gradientView.backgroundColor = .clear
+        self.gradientView.layer.insertSublayer(gradientLayer!, at: 0)
     }
     
     func setupHeader() {
@@ -96,16 +110,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         venueLabel.text = selectedSetList?.venue.venueFullName()
         dateLabel.text = Date.presentableDateFromDate(eventDate: selectedSetList?.eventDate ?? "01-01-1990")
         
-        let gradientLayer: CAGradientLayer = CAGradientLayer()
-        
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.masksToBounds = true
-        let color1 = (UIColor.clear.cgColor) as CGColor
-        let color2 = (UIColor.white.cgColor) as CGColor
-        gradientLayer.colors = [color1, color2]
-        
-        self.gradientView.backgroundColor = .clear
-        self.gradientView.layer.insertSublayer(gradientLayer, at: 0)
+
     }
     
     func getData() {
@@ -146,6 +151,32 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     //MARK: Actions
     @IBAction func AddSetlistToSpotifyTapped(_ sender: Any) {
+        
+        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
+            if error != nil || token == nil {
+                let button = SpotifyLoginButton(viewController: self!,
+                                                scopes: [.streaming,
+                                                         .userReadTop,
+                                                         .playlistReadPrivate,
+                                                         .userLibraryRead,
+                                                         .playlistModifyPublic,
+                                                         .playlistModifyPrivate,
+                                                         .userModifyPlaybackState,
+                                                         ])
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self?.loginSuccessful),
+                                                       name: .SpotifyLoginSuccessful,
+                                                       object: nil)
+                button.sendActions(for: .touchUpInside)
+            }
+            else {
+                self?.addSetlist()
+            }
+        }
+
+    }
+    
+    func addSetlist() {
         guard let setlist = self.selectedSetList else { return }
         
         //if setlist has no songs, dont create a playlist
@@ -173,6 +204,16 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         }
     }
     
+    @objc func loginSuccessful() {
+        
+        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
+            if token != nil {
+                SpotifyConnectionManager.authToken = token ?? ""
+                self?.addSetlist()
+            }
+        }
+    }
+    
     func animateAddtoSpotify(completion: @escaping () -> Void) {
         UIView.animate(withDuration: 0.5) {
             self.spotifyLogo.alpha = 0
@@ -184,8 +225,6 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         
         addSetlistButton.setTitle(success ? "Added Setlist" : "Add Setlist To", for: .normal)
         addSetlistButton.titleLabel?.font = success ? UIFont.systemFont(ofSize: 18, weight: .bold) : UIFont.systemFont(ofSize: 18, weight: .regular)
-        
-        addSetlistButton.titleEdgeInsets.left = success ? 10 : 20
         
         UIView.animate(withDuration: 0.5) {
             self.spotifyLogo.alpha = 1
@@ -235,6 +274,10 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             }
         }
         else {
+            
+            if tableView.numberOfRows(inSection: section) == 1 && selectedSetList?.sets.songCount() ?? 0 == 0 {
+                return "No Results"
+            }
             return "Other Sets From This Gig"
         }
     }
@@ -255,6 +298,16 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        
+        //hide other sets header if setlist has songs but has no "similar sets"
+        let setCount = selectedSetList?.sets.setArray.count ?? 0
+        if section >= setCount {
+            if similarSets?.setlist.count == 1 && selectedSetList?.sets.songCount() ?? 0 > 0 {
+                return 0
+            }
+        }
+        
         return 40
     }
     
@@ -284,7 +337,8 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
                 let song = set.song[indexPath.row]
                 let playingThisSong = playingTrack?.name == song.name
 
-                cell.populateCell(with: song.name, albumName: song.spotifyTrack?.album.name ?? "-", imageURL: song.spotifyTrack?.album.largestCover.imageURL, info: song.fullInfo(), playing: playingThisSong)
+                let optionalAlbumString = SpotifyConnectionManager.authToken.count > 0 ? "(Unavailable on Spotify)" : ""
+                cell.populateCell(with: song.name, albumName: song.spotifyTrack?.album.name ?? optionalAlbumString, imageURL: song.spotifyTrack?.album.largestCover.imageURL, info: song.fullInfo(), spotifySupport: song.spotifyTrack != nil, playing: playingThisSong)
             }
             
             return cell
@@ -326,19 +380,16 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             if let set = selectedSetList?.sets.setArray[indexPath.section] {
                 let song = set.song[indexPath.row]
                 
-                if song.name == self.playingTrack?.name {
-//                    do {
-//                        try self.player?.stop()
-//                    }
-//                    catch {
-//
-//                    }
-                    self.playTrack(song: Song())
-                    self.stopPlaying()
+                if let playing =  self.playingTrack {
+                    if song.spotifyTrack?.identifier == playing.identifier {
+                        pauseTrack()
+                    }
                 }
                 else {
                     self.playTrack(song: song)
                 }
+                
+                
             }
         }
         else {
@@ -378,12 +429,61 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         if !isPlaying {
-            stopPlaying()
+            //stopPlaying()
+        }
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: String!) {
+
+        if let tracks = self.selectedSetList?.sets.fullSongSpotifyIds() as? [SPTTrack] {
+            for track in tracks {
+                if trackUri.contains(track.identifier) {
+                    self.playingTrack = track
+                }
+            }
+            
+            self.tableView.reloadData()
         }
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
         print(error)
+    }
+    
+    func pauseTrack() {
+        self.player?.setIsPlaying(false, callback: { (error) in
+            if error != nil {
+                print("pause failed")
+            }
+            
+            
+            self.playingTrack = nil
+            self.tableView.reloadData()
+        })
+    }
+    
+    func resumeTrack() {
+        self.player?.setIsPlaying(true, callback: { (error) in
+            if error != nil {
+                print("pause failed")
+            }
+        })
+    }
+    
+    func nextTrack() {
+        self.player?.skipNext({ (error) in
+            if error != nil {
+                print("next failed")
+            }
+        })
+    }
+    
+    func previousTrack() {
+        self.player?.skipPrevious({ (error) in
+            if error != nil {
+                print("previous failed")
+            }
+        })
     }
     
     func stopPlaying() {
@@ -394,29 +494,135 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     func playTrack(song: Song) {
         guard let trackID = song.spotifyTrack?.identifier
             else { return }
+
         self.player?.playSpotifyURI("spotify:track:" + trackID, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if (error != nil) {
                 print("failed!")
             }
             UIApplication.shared.beginReceivingRemoteControlEvents()
- //           self.updateNowPlayingCenter(title: song.name, artist: song.spotifyTrack?.artists[0].name, albumArt: nil, currentTime: 0, songLength: 3,:12, PlaybackRate: 1)
-            self.playingTrack = song
+            self.playingTrack = song.spotifyTrack
+            
+            //queue remaining tracks
+            if let tracks = self.selectedSetList?.sets.fullSongSpotifyIds() as? [SPTTrack] {
+                var index = 0
+                for (count, track) in tracks.enumerated() {
+                    if track.identifier == song.spotifyTrack?.identifier {
+                        index = count
+                        break
+                    }
+                }
+                
+                //last track, dont need to queue any
+                if index + 1 >= tracks.count {
+                    return
+                }
+                
+                let totalTracks = tracks.count - 1
+                let subset = tracks[index + 1...totalTracks]
+                let queueArray : [SPTTrack] = Array(subset).reversed()
+                for (index, track) in queueArray.enumerated() {
+                    
+                    //hack to get around call limit spotify has
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(index), execute: {
+                        self.queueTrack(track: track)
+                    })
+                    
+                }
+            }
         })
     }
     
-//    func updateNowPlayingCenter(title: String, artist: String, albumArt: AnyObject, currentTime: NSNumber, songLength: NSNumber, PlaybackRate: Double){
-//        
-//        var songInfo: Dictionary <NSObject, AnyObject> = [
-//            
-//            MPMediaItemPropertyTitle: title,
-//            MPMediaItemPropertyArtist: artist,
-//            MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: albumArt as! UIImage),
-//            MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
-//            MPMediaItemPropertyPlaybackDuration: songLength,
-//            MPNowPlayingInfoPropertyPlaybackRate: PlaybackRate
-//        ]
-//        
-//        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [NSObject : AnyObject]
-//    }
-
+    func queueTrack(track: SPTTrack) {
+        guard let trackID = track.identifier
+            else { return }
+        self.player?.queueSpotifyURI("spotify:track:" + trackID, callback: { (error) in
+            if error != nil {
+                print("failed")
+                return
+            }
+            print("queued: \(track.name)")
+        })
+    }
+    
+    func updateNowPlayingCenter(title: String, artist: String, albumURL: URL?, currentTime: NSNumber, songLength: NSNumber){
+        
+        var songInfo: [String : Any] = [
+            
+            MPMediaItemPropertyTitle: title,
+            MPMediaItemPropertyArtist: artist,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
+            MPMediaItemPropertyPlaybackDuration: songLength
+        ]
+        
+        if let url = albumURL {
+            downloadImage(url: url, completion: { (image) in
+                if let img = image {
+                    songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: img)
+                }
+                
+                MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
+            })
+        }
+        else {
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
+        }
+    }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        
+        guard let evnt = event else { return }
+        if evnt.type == .remoteControl {
+            
+            switch evnt.subtype {
+            case .remoteControlPlay:
+                self.resumeTrack()
+                
+            case .remoteControlPause:
+                self.pauseTrack()
+                
+            case .remoteControlTogglePlayPause:
+                (self.player?.playbackState.isPlaying ?? false) ? self.pauseTrack() : self.resumeTrack()
+                
+            case .remoteControlNextTrack:
+                self.nextTrack()
+                
+            case .remoteControlPreviousTrack:
+                self.previousTrack()
+                
+            case .remoteControlBeginSeekingBackward:
+                break
+                
+            case .remoteControlEndSeekingBackward:
+                break
+                
+            case .remoteControlBeginSeekingForward:
+                break
+                
+            case .remoteControlEndSeekingForward:
+                break
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    //download Image code
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL, completion: @escaping ((UIImage?) -> Void)) {
+        print("Download Started")
+        getDataFromUrl(url: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() {
+                completion(UIImage(data: data))
+            }
+        }
+    }
 }

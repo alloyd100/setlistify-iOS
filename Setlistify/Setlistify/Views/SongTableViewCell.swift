@@ -29,7 +29,7 @@ class SongTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populateCell(with songName: String, albumName: String, imageURL: URL?, info: String, playing: Bool) {
+    func populateCell(with songName: String, albumName: String, imageURL: URL?, info: String, spotifySupport: Bool, playing: Bool) {
         songNameLabel.text = songName
         albumNameLabel.text = albumName
         if let url = imageURL {
@@ -37,6 +37,7 @@ class SongTableViewCell: UITableViewCell {
         }
         infoLabel.text = info
         
+        playButton.isHidden = !spotifySupport
         setPlayingIcon(playing: playing)
     }
     

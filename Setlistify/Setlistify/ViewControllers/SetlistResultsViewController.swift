@@ -37,10 +37,9 @@ class SetlistResultsViewController: UITableViewController {
     }
     
     func setupLogoInTop() {
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 45))
-        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 45))
+        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
         let logo = #imageLiteral(resourceName: "setlistify_logo")
         imageView.image = logo

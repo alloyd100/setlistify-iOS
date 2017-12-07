@@ -47,6 +47,31 @@ extension UIView {
     }
 }
 
+extension SPTTrack {
+    
+    func artistsString() -> String {
+        
+        var result = ""
+        for artist in self.artists {
+            if let partialArtist = artist as? SPTPartialArtist {
+                if result.count == 0 {
+                    result = result + partialArtist.name
+                }
+                else {
+                    result = result + ", " + partialArtist.name
+                }
+            }
+        }
+        
+        if result.hasSuffix(", ") {
+            result.removeLast()
+            result.removeLast()
+        }
+        
+        return result
+    }
+}
+
 extension UIColor {
     static let setlistifyBlack = UIColor(red: 52.0 / 255, green: 53.0 / 255, blue: 65.0 / 255, alpha: 1)
     static let setlistifyGreen = UIColor(red: 124.0 / 255, green: 203.0 / 255, blue: 188.0 / 255, alpha: 1)
