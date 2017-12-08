@@ -40,6 +40,13 @@ struct SetlistConnectionManager {
         query = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         request(query, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: defaultHeaders).responseSerializable(completion)
     }
- 
+    
+    static func getUsersSetlists(with user: String, pageNumber: Int, completion: @escaping ((DataResponse<SetlistSearchResponse>) -> Void)) {
+        
+        var query = baseURL + "/1.0/user/\(user)/attended?p=\(pageNumber)"
+
+        query = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        request(query, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: defaultHeaders).responseSerializable(completion)
+    }
 }
 

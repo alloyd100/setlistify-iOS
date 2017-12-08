@@ -77,6 +77,7 @@ extension UIColor {
     static let setlistifyGreen = UIColor(red: 124.0 / 255, green: 203.0 / 255, blue: 188.0 / 255, alpha: 1)
     static let setlistifyGreenDark = UIColor(red: 115.0 / 255, green: 181.0 / 255, blue: 169.0 / 255, alpha: 1)
     static let setlistifyCream = UIColor(red: 245 / 255, green: 242 / 255, blue: 236 / 255, alpha: 1)
+    static let setlistifyCreamDisabled = UIColor(red: 232 / 255, green: 229 / 255, blue: 211 / 255, alpha: 1)
 }
 
 extension Date {

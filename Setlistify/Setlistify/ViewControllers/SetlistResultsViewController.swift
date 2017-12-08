@@ -15,6 +15,7 @@ class SetlistResultsViewController: UITableViewController {
     
     var artistSearch = ""
     var venueSearch = ""
+    var userSearch = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,23 +51,45 @@ class SetlistResultsViewController: UITableViewController {
     }
     
     func fetchDataAPI() {
-        guard let data = dataSource else { return }
-        SetlistConnectionManager.search(with: artistSearch, venue: venueSearch, pageNumber: currentPage) { (response) in
+        guard let _ = dataSource else { return }
+        if userSearch.count > 0 {
+            SetlistConnectionManager.getUsersSetlists(with: userSearch, pageNumber: currentPage) { (response) in
+                
+                switch response.result {
+                case .success(let data):
+                    
+                    self.dataSource?.setlist.append(contentsOf: data.setlist)
+                    self.tableView.reloadData()
+                    
+                case .failure:
+                    
+                    let myalert = UIAlertController(title: "Sorry", message: "We couldn't find any setlists.", preferredStyle: UIAlertControllerStyle.alert)
+                    myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        print("Selected")
+                    })
+                    self.present(myalert, animated: true)
+                }
+            }
 
-            switch response.result {
-            case .success(let data):
-                print(data.itemsPerPage)
+        }
+        else {
+            SetlistConnectionManager.search(with: artistSearch, venue: venueSearch, pageNumber: currentPage) { (response) in
                 
-                self.dataSource?.setlist.append(contentsOf: data.setlist)
-                self.tableView.reloadData()
-                
-            case .failure:
-                
-                let myalert = UIAlertController(title: "Sorry", message: "We couldn't find any setlists.", preferredStyle: UIAlertControllerStyle.alert)
-                myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-                    print("Selected")
-                })
-                self.present(myalert, animated: true)
+                switch response.result {
+                case .success(let data):
+                    print(data.itemsPerPage)
+                    
+                    self.dataSource?.setlist.append(contentsOf: data.setlist)
+                    self.tableView.reloadData()
+                    
+                case .failure:
+                    
+                    let myalert = UIAlertController(title: "Sorry", message: "We couldn't find any setlists.", preferredStyle: UIAlertControllerStyle.alert)
+                    myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        print("Selected")
+                    })
+                    self.present(myalert, animated: true)
+                }
             }
         }
     }

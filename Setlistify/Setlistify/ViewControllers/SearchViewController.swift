@@ -23,6 +23,7 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
     
     @IBOutlet weak var artistTextField: UITextField!
     @IBOutlet weak var venueTextField: UITextField!
+    @IBOutlet weak var userTextfield: UITextField!
     
     @IBOutlet weak var spotifyLoginContainer: UIView!
     
@@ -45,6 +46,10 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
                 self?.loginSuccessful()
             }
         }
+        
+        artistTextField.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        venueTextField.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        userTextfield.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,32 +134,76 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
     func search() {
         let spinner = SpinnerView.showSpinner(inButton: self.searchButton)
         
-        SetlistConnectionManager.search(with: artistTextField.text ?? "", venue: venueTextField.text ?? "", pageNumber: 1) { (response) in
+        if userTextfield.text?.count ?? 0 > 0 {
             
-            spinner.dismiss()
-            switch response.result {
-            case .success(let data):
-                print(data.itemsPerPage)
+            if artistTextField?.text?.count ?? 0 > 0 || venueTextField?.text?.count ?? 0 > 0 {
                 
-                if data.total > 0 {
-                    self.title = ""
-                    
-                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistResultsViewController") as! SetlistResultsViewController
-                    vc.dataSource = data
-                    vc.artistSearch = self.artistTextField.text ?? ""
-                    vc.venueSearch = self.venueTextField.text ?? ""
-                    
-                    vc.title = self.artistTextField.text ?? "Results"
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                
-            case .failure:
-                
-                let myalert = UIAlertController(title: "Sorry", message: "We couldn't find any setlists.", preferredStyle: UIAlertControllerStyle.alert)
+                let myalert = UIAlertController(title: "Sorry", message: "We cant search by Setlist.fm users and Artists/Venues at the same time. Please only fill in one search type.", preferredStyle: UIAlertControllerStyle.alert)
                 myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
                     print("Selected")
                 })
                 self.present(myalert, animated: true)
+                return
+            }
+            
+            //users setlists
+            SetlistConnectionManager.getUsersSetlists(with: userTextfield.text ?? "", pageNumber: 1) { (response) in
+                
+                spinner.dismiss()
+                switch response.result {
+                case .success(let data):
+                    print(data.itemsPerPage)
+                    
+                    if data.total > 0 {
+                        self.title = ""
+                        
+                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistResultsViewController") as! SetlistResultsViewController
+                        vc.dataSource = data
+                        vc.userSearch = self.userTextfield.text ?? ""
+                        
+                        vc.title = self.artistTextField.text ?? "Results"
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                case .failure:
+                    
+                    let myalert = UIAlertController(title: "Sorry", message: "We couldn't find any setlists for that user.", preferredStyle: UIAlertControllerStyle.alert)
+                    myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        print("Selected")
+                    })
+                    self.present(myalert, animated: true)
+                }
+            }
+        }
+        else {
+            //search setlists
+            SetlistConnectionManager.search(with: artistTextField.text ?? "", venue: venueTextField.text ?? "", pageNumber: 1) { (response) in
+                
+                spinner.dismiss()
+                switch response.result {
+                case .success(let data):
+                    print(data.itemsPerPage)
+                    
+                    if data.total > 0 {
+                        self.title = ""
+                        
+                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetlistResultsViewController") as! SetlistResultsViewController
+                        vc.dataSource = data
+                        vc.artistSearch = self.artistTextField.text ?? ""
+                        vc.venueSearch = self.venueTextField.text ?? ""
+                        
+                        vc.title = self.artistTextField.text ?? "Results"
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                case .failure:
+                    
+                    let myalert = UIAlertController(title: "Sorry", message: "We couldn't find any setlists.", preferredStyle: UIAlertControllerStyle.alert)
+                    myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        print("Selected")
+                    })
+                    self.present(myalert, animated: true)
+                }
             }
         }
     }
@@ -168,6 +217,27 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
         }
         
         return true
+    }
+    
+    func disableUserTextfield() {
+        userTextfield.backgroundColor = UIColor.setlistifyCreamDisabled
+        userTextfield.isEnabled = false
+    }
+    
+    func disableArtistAndVenueTextfield() {
+        artistTextField.backgroundColor = UIColor.setlistifyCreamDisabled
+        artistTextField.isEnabled = false
+        venueTextField.backgroundColor = UIColor.setlistifyCreamDisabled
+        venueTextField.isEnabled = false
+    }
+    
+    func enableAllTextFields() {
+        userTextfield.backgroundColor = UIColor.white
+        userTextfield.isEnabled = true
+        artistTextField.backgroundColor = UIColor.white
+        artistTextField.isEnabled = true
+        venueTextField.backgroundColor = UIColor.white
+        venueTextField.isEnabled = true
     }
     
     //MARK: NOKeyboardHandlerDelegate
@@ -189,6 +259,30 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
     }
     
     //MARK: UITextFieldDelegate
+    
+    @objc func textFieldDidChange(textField : UITextField){
+        
+        if textField == artistTextField || textField == venueTextField {
+            if textField.text?.count ?? 0 > 0 {
+                //artist/venue entered
+                disableUserTextfield()
+            }
+            else {
+                enableAllTextFields()
+            }
+        }
+        else {
+            //user textfield
+            if textField.text?.count ?? 0 > 0 {
+                //artist/venue entered
+                disableArtistAndVenueTextfield()
+            }
+            else {
+                enableAllTextFields()
+            }
+        }
+
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == artistTextField {

@@ -63,7 +63,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yM-01-oum">
-                                <rect key="frame" x="122.5" y="302.5" width="130" height="60"/>
+                                <rect key="frame" x="122.5" y="388.5" width="130" height="60"/>
                                 <color key="backgroundColor" red="0.20369529724121094" green="0.20788818597793579" blue="0.25643900036811829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="4eq-0w-cRi"/>
@@ -78,7 +78,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltn-mw-Y6N">
-                                <rect key="frame" x="67" y="412.5" width="240" height="128"/>
+                                <rect key="frame" x="67" y="498.5" width="240" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="eeu-wi-yax"/>
@@ -91,30 +91,65 @@
                                     <constraint firstAttribute="height" constant="264" id="dct-QX-4f2"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Setlist Username (for attended gigs)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-8e-fqe">
+                                <rect key="frame" x="10" y="328.5" width="355" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6Ys-8k-SVA"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ISJ-cm-q1D"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Search By Setlist.fm User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLW-0g-Swf">
+                                <rect key="frame" x="10" y="303.5" width="355" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.20369529719999999" green="0.207888186" blue="0.25643900040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KH9-rn-aZs">
+                                <rect key="frame" x="40" y="292.5" width="295" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="mb6-2e-tCZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.94901960780000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="p0J-j6-99t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="0K3-aX-9XV"/>
                             <constraint firstItem="Jcw-Dk-7Bf" firstAttribute="top" secondItem="b3v-KN-OJy" secondAttribute="bottom" constant="5" id="32h-Ey-o5t"/>
                             <constraint firstItem="nxk-2q-6li" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3BF-k4-Oiw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KH9-rn-aZs" secondAttribute="trailing" constant="40" id="3rx-3Q-cmp"/>
                             <constraint firstItem="ltn-mw-Y6N" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="49f-lq-drU"/>
                             <constraint firstItem="6yM-01-oum" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A7i-8Z-Bk2"/>
                             <constraint firstItem="b3v-KN-OJy" firstAttribute="top" secondItem="p0J-j6-99t" secondAttribute="bottom" constant="20" id="Amy-PX-up6"/>
+                            <constraint firstItem="s6l-8e-fqe" firstAttribute="leading" secondItem="gLW-0g-Swf" secondAttribute="leading" id="BWV-ld-PoC"/>
+                            <constraint firstItem="KH9-rn-aZs" firstAttribute="top" secondItem="Kg9-Wl-jYI" secondAttribute="bottom" constant="10" id="BWz-Kh-GhL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s6l-8e-fqe" secondAttribute="trailing" constant="10" id="Cir-Rt-Jj7"/>
                             <constraint firstItem="p0J-j6-99t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ClA-Pg-ufE"/>
                             <constraint firstItem="ltn-mw-Y6N" firstAttribute="top" secondItem="6yM-01-oum" secondAttribute="bottom" constant="50" id="DBz-3v-Qm7"/>
+                            <constraint firstItem="gLW-0g-Swf" firstAttribute="top" secondItem="KH9-rn-aZs" secondAttribute="bottom" constant="10" id="FPA-zD-jZx"/>
                             <constraint firstItem="Jcw-Dk-7Bf" firstAttribute="trailing" secondItem="b3v-KN-OJy" secondAttribute="trailing" id="I22-OQ-InA"/>
                             <constraint firstItem="Kg9-Wl-jYI" firstAttribute="leading" secondItem="mA6-Zw-bEc" secondAttribute="leading" id="Qm1-ES-JhK"/>
                             <constraint firstItem="Jcw-Dk-7Bf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="UrV-2F-RkP"/>
                             <constraint firstItem="Jcw-Dk-7Bf" firstAttribute="leading" secondItem="b3v-KN-OJy" secondAttribute="leading" id="WK0-Ji-Pgj"/>
+                            <constraint firstItem="s6l-8e-fqe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="ZAi-rZ-kTT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxk-2q-6li" secondAttribute="bottom" id="bDQ-SS-DKP"/>
                             <constraint firstItem="Kg9-Wl-jYI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="bKg-Y5-1IT"/>
+                            <constraint firstItem="s6l-8e-fqe" firstAttribute="top" secondItem="gLW-0g-Swf" secondAttribute="bottom" constant="5" id="bTt-Jm-m5X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kg9-Wl-jYI" secondAttribute="trailing" constant="10" id="cxy-MS-bQt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nxk-2q-6li" secondAttribute="trailing" id="dxI-CO-7oK"/>
-                            <constraint firstItem="6yM-01-oum" firstAttribute="top" secondItem="Kg9-Wl-jYI" secondAttribute="bottom" constant="20" id="e9N-Uo-STH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jcw-Dk-7Bf" secondAttribute="trailing" constant="10" id="eTG-5f-kBQ"/>
                             <constraint firstItem="mA6-Zw-bEc" firstAttribute="top" secondItem="Jcw-Dk-7Bf" secondAttribute="bottom" constant="10" id="qeh-Nc-AzY"/>
+                            <constraint firstItem="KH9-rn-aZs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="sOU-7t-dGD"/>
                             <constraint firstItem="Kg9-Wl-jYI" firstAttribute="top" secondItem="mA6-Zw-bEc" secondAttribute="bottom" constant="5" id="vQS-jN-rVW"/>
+                            <constraint firstItem="6yM-01-oum" firstAttribute="top" secondItem="s6l-8e-fqe" secondAttribute="bottom" constant="20" id="xfr-MP-cqx"/>
                             <constraint firstItem="Kg9-Wl-jYI" firstAttribute="trailing" secondItem="mA6-Zw-bEc" secondAttribute="trailing" id="yH7-0m-TDq"/>
+                            <constraint firstItem="s6l-8e-fqe" firstAttribute="trailing" secondItem="gLW-0g-Swf" secondAttribute="trailing" id="z4V-Sb-m0O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -127,6 +162,7 @@
                         <outlet property="logoIV" destination="p0J-j6-99t" id="XfF-hO-spB"/>
                         <outlet property="searchButton" destination="6yM-01-oum" id="GHi-MU-oLa"/>
                         <outlet property="spotifyLoginContainer" destination="ltn-mw-Y6N" id="ooF-3y-RX1"/>
+                        <outlet property="userTextfield" destination="s6l-8e-fqe" id="3ht-vP-PaC"/>
                         <outlet property="venueTextField" destination="Kg9-Wl-jYI" id="0fN-J5-7pT"/>
                         <segue destination="nIX-oM-eJo" kind="show" identifier="home_to_login" id="QI4-R2-n9a"/>
                     </connections>
