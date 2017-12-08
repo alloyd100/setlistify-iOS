@@ -12,7 +12,7 @@ import Kingfisher
 import MediaPlayer
 import SpotifyLogin
 
-class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate, MPMediaPickerControllerDelegate {
+class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate, MPMediaPickerControllerDelegate, UIViewControllerPreviewingDelegate {
     
     var player: SPTAudioStreamingController?
     var playingTrack: SPTTrack? {
@@ -74,6 +74,10 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         getData()
         getSimilarSetsData()
         setupLogoInTop()
+        
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -414,7 +418,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
                     cell.populateCell(with: song.name, albumName: optionalAlbumString, imageURL: nil, info: song.fullInfo(), spotifySupport: false, playing: false)
                 }
             }
-            
+
             return cell
         }
         else {
@@ -523,6 +527,34 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
 
     }
     
+    //MARK: Previewing delegate
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = self.tableView?.indexPathForRow(at: location) else { return nil }
+        guard let cell = self.tableView?.cellForRow(at: indexPath) else { return nil }
+        
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "ImagePreviewViewController") as? ImagePreviewViewController else { return nil }
+        
+        if let track = trackForIndexPath(indexPath: indexPath) {
+
+            var url: URL?
+            if let album = track.album {
+                url = album.largestCover.imageURL
+            }
+            
+            detailVC.imageurl = url
+        }
+
+        detailVC.preferredContentSize  = CGSize(width: 0.0, height: self.view.frame.width - 20)
+        previewingContext.sourceRect = cell.frame
+        
+        return detailVC
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
     
     //MARK: Spotify Playback
     

@@ -45,6 +45,14 @@ extension UIView {
         self.layer.cornerRadius = self.bounds.size.width / 2
         self.layer.masksToBounds = true
     }
+    
+    func drawShadowForView() {
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 1, height: 2)
+        self.layer.shadowRadius = 2
+        self.layer.shadowOpacity = 0.2
+    }
 }
 
 extension SPTTrack {

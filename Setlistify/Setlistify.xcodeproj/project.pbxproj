@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2332FA2F1FDAFBB400D94476 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */; };
 		23C76BA61FD1A4C700D42FB5 /* SetlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA51FD1A4C700D42FB5 /* SetlistTableViewCell.swift */; };
 		23C76BA81FD1BC1E00D42FB5 /* SetlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */; };
 		23C76BAA1FD1C33900D42FB5 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA91FD1C33900D42FB5 /* SongTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		23C76BA51FD1A4C700D42FB5 /* SetlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistTableViewCell.swift; sourceTree = "<group>"; };
 		23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistViewController.swift; sourceTree = "<group>"; };
 		23C76BA91FD1C33900D42FB5 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				23D2274C1FCD8BB2003F3B23 /* SearchViewController.swift */,
 				23DBE7311FD06494006C290B /* SetlistResultsViewController.swift */,
 				23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */,
+				2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				23C76BA61FD1A4C700D42FB5 /* SetlistTableViewCell.swift in Sources */,
 				23DBE7341FD17640006C290B /* Venue.swift in Sources */,
 				23DBE72D1FD06400006C290B /* Artist.swift in Sources */,
+				2332FA2F1FDAFBB400D94476 /* ImagePreviewViewController.swift in Sources */,
 				23C76BA81FD1BC1E00D42FB5 /* SetlistViewController.swift in Sources */,
 				23DBE72B1FD06363006C290B /* SetlistSearchResponse.swift in Sources */,
 				23D2274D1FCD8BB2003F3B23 /* SearchViewController.swift in Sources */,

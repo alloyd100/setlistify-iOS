@@ -91,7 +91,7 @@
                                     <constraint firstAttribute="height" constant="264" id="dct-QX-4f2"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Setlist Username (for attended gigs)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-8e-fqe">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Setlist.fm Username (for attended gigs)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-8e-fqe">
                                 <rect key="frame" x="10" y="328.5" width="355" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -534,6 +534,37 @@
             </objects>
             <point key="canvasLocation" x="768.79999999999995" y="723.68815592203907"/>
         </scene>
+        <!--Image Preview View Controller-->
+        <scene sceneID="mny-oz-Zuq">
+            <objects>
+                <viewController storyboardIdentifier="ImagePreviewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBW-9u-Gw8" customClass="ImagePreviewViewController" customModule="Setlistify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kvm-4R-heT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arya" translatesAutoresizingMaskIntoConstraints="NO" id="wdj-Mp-a4U">
+                                <rect key="frame" x="10" y="10" width="355" height="647"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wdj-Mp-a4U" secondAttribute="trailing" constant="10" id="DlY-PX-gUq"/>
+                            <constraint firstItem="wdj-Mp-a4U" firstAttribute="leading" secondItem="kvm-4R-heT" secondAttribute="leading" constant="10" id="GPo-MC-whq"/>
+                            <constraint firstItem="wdj-Mp-a4U" firstAttribute="top" secondItem="kvm-4R-heT" secondAttribute="top" constant="10" id="M1X-0i-i4Q"/>
+                            <constraint firstItem="wdj-Mp-a4U" firstAttribute="centerX" secondItem="kvm-4R-heT" secondAttribute="centerX" id="cj1-Jh-IdC"/>
+                            <constraint firstAttribute="bottom" secondItem="wdj-Mp-a4U" secondAttribute="bottom" constant="10" id="rrK-kp-VOs"/>
+                            <constraint firstItem="wdj-Mp-a4U" firstAttribute="centerY" secondItem="kvm-4R-heT" secondAttribute="centerY" id="y72-zh-uQJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ezc-RK-495"/>
+                    </view>
+                    <connections>
+                        <outlet property="albumImageView" destination="wdj-Mp-a4U" id="ihS-to-BjZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dxw-4u-ZbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1487" y="724"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Md1-of-ZBg">
             <objects>
@@ -572,6 +603,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Arya" width="1200" height="1600"/>
         <image name="gigBackground" width="852" height="480"/>
         <image name="play" width="540" height="540"/>
         <image name="setlistify_logo" width="202" height="91"/>
