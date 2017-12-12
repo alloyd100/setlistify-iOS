@@ -389,7 +389,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             return 0
         }
         else {
-            return similarSets?.setlist.count ?? 0
+            return similarSets?.total ?? 0
         }
     }
     
@@ -422,9 +422,15 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             return cell
         }
         else {
+            
+            if similarSets?.setlist[indexPath.row].artist.name == self.selectedSetList?.artist.name {
+                let cell: UITableViewCell = UITableViewCell()
+                return cell
+            }
+            
             let cell: UITableViewCell = UITableViewCell()
-            cell.textLabel?.text = similarSets?.setlist[indexPath.row].artist.name
             cell.accessoryType = .disclosureIndicator
+            cell.textLabel?.text = similarSets?.setlist[indexPath.row].artist.name
             cell.backgroundColor = UIColor.setlistifyCream
             cell.textLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             
@@ -532,6 +538,13 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         
         guard let indexPath = self.tableView?.indexPathForRow(at: location) else { return nil }
+        
+        let setCount = selectedSetList?.sets.setArray.count ?? 0
+        if indexPath.section >= setCount {
+            //dont do for "other Sets" section
+            return nil
+        }
+        
         guard let cell = self.tableView?.cellForRow(at: indexPath) else { return nil }
         
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "ImagePreviewViewController") as? ImagePreviewViewController else { return nil }
@@ -546,14 +559,14 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             detailVC.imageurl = url
         }
 
-        detailVC.preferredContentSize  = CGSize(width: 0.0, height: self.view.frame.width - 20)
+        detailVC.preferredContentSize  = CGSize(width: 0.0, height: self.view.frame.width)
         previewingContext.sourceRect = cell.frame
         
         return detailVC
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        show(viewControllerToCommit, sender: self)
+       //dont push the vc, do nothing here
     }
     
     //MARK: Spotify Playback
@@ -640,6 +653,12 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         self.player?.playSpotifyURI("spotify:track:" + trackID, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if (error != nil) {
                 print("failed!")
+                let myalert = UIAlertController(title: "Sorry", message: "We are having trouble playing this track. Please check your network connection and that you have a Spotify Premium account.", preferredStyle: UIAlertControllerStyle.alert)
+                myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                    print("Selected")
+                })
+                self.present(myalert, animated: true)
+                return
             }
             UIApplication.shared.beginReceivingRemoteControlEvents()
             
