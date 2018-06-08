@@ -33,10 +33,10 @@ class SongTableViewCell: UITableViewCell {
         songNameLabel.text = songName
         albumNameLabel.text = albumName
         if let url = imageURL {
-            albumCoverImageView.kf.setImage(with: url, placeholder: UIImage(named: "gigBackground"), options: nil, progressBlock: nil, completionHandler: nil)
+            albumCoverImageView.kf.setImage(with: url, placeholder: UIImage(named: "AlbumPlaceholder"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         else {
-            albumCoverImageView.image = #imageLiteral(resourceName: "gigBackground")
+            albumCoverImageView.image = #imageLiteral(resourceName: "AlbumPlaceholder")
         }
         infoLabel.text = info
         
