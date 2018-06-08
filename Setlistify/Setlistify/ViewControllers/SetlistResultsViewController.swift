@@ -104,6 +104,7 @@ class SetlistResultsViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell: SetlistTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SetlistCell") as! SetlistTableViewCell
         
         if (dataSource?.setlist.count ?? 0) - 1 >= indexPath.row {
@@ -111,10 +112,16 @@ class SetlistResultsViewController: UITableViewController {
                 cell.populateCell(with: setlist.artist.name, venue: setlist.venue.name, songCount: setlist.sets.songCount(), dateString: setlist.eventDate)
             }
         }
+        else {
+            cell.populateCell(with: "", venue: "", songCount: 0,  dateString: "")
+        }
         
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

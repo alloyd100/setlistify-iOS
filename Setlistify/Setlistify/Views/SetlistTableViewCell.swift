@@ -29,9 +29,16 @@ class SetlistTableViewCell: UITableViewCell {
         songCountLabel.text = "\(songCount) Songs"
 
         let dateArray:[String] = dateString.components(separatedBy: "-")
-        dayLabel.text = dateArray[0]
-        monthLabel.text = monthNameForCount(monthAsNumber: dateArray[1])
-        yearLabel.text = dateArray[2]
+        if dateArray.count == 3 {
+            dayLabel.text = dateArray[0]
+            monthLabel.text = monthNameForCount(monthAsNumber: dateArray[1])
+            yearLabel.text = dateArray[2]
+        }
+        else {
+            dayLabel.text = ""
+            monthLabel.text = ""
+            yearLabel.text = ""
+        }
     }
     
     func monthNameForCount(monthAsNumber: String) -> String {
