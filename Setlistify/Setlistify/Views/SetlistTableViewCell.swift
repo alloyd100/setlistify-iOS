@@ -35,7 +35,7 @@ class SetlistTableViewCell: UITableViewCell {
             yearLabel.text = dateArray[2]
         }
         else {
-            dayLabel.text = ""
+            dayLabel.text = "-"
             monthLabel.text = ""
             yearLabel.text = ""
         }
