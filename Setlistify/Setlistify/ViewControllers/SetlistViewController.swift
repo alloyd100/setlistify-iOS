@@ -434,8 +434,14 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         }
         else {
             
+            if indexPath.row >= similarSets?.setlist.count ?? 0 {
+                let cell: UITableViewCell = UITableViewCell()
+                cell.backgroundColor = UIColor.setlistifyCream
+                return cell
+            }
             if similarSets?.setlist[indexPath.row].artist.name == self.selectedSetList?.artist.name {
                 let cell: UITableViewCell = UITableViewCell()
+                cell.backgroundColor = UIColor.setlistifyCream
                 return cell
             }
             
@@ -459,8 +465,10 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         }
         else {
             
-            if similarSets?.setlist[indexPath.row].artist.name == self.selectedSetList?.artist.name {
-                return 0
+            if indexPath.row < similarSets?.setlist.count ?? 0 {
+                if similarSets?.setlist[indexPath.row].artist.name == self.selectedSetList?.artist.name {
+                    return 0
+                }
             }
 
             return 60
