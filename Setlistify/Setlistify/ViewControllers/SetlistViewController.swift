@@ -62,7 +62,10 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedSetList = dataSource?.setlist[self.selectedSetIndex]
+        
+        if selectedSetIndex < dataSource?.setlist.count ?? 0 {
+            selectedSetList = dataSource?.setlist[self.selectedSetIndex]
+        }
         self.tableView.sectionFooterHeight = 40
         self.tableView.sectionHeaderHeight = 0
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -323,18 +326,26 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         
         let setCount = selectedSetList?.sets.setArray.count ?? 0
         if section < setCount {
-            if (selectedSetList?.sets.setArray[section].name.count ?? "".count) > 0 {
+            
+            guard let set = selectedSetList?.sets.setArray[section] else {
+                return ""
+            }
+            
+            //if set has a name, use that
+            let trimmedSetName = set.name.trimmingCharacters(in: .whitespaces)
+            if trimmedSetName.count > 0 {
                 return selectedSetList?.sets.setArray[section].name
             }
             else {
-                if section == 0 {
+                
+                if set.encore == 0 {
                     return "Main Set"
                 }
-                else if section == 1 {
+                else if set.encore == 1 {
                     return "Encore"
                 }
                 else {
-                    return "Encore \(section)"
+                    return "Encore \(set.encore)"
                 }
             }
         }
