@@ -193,7 +193,7 @@ struct SpotifyConnectionManager {
         SPTUser.requestCurrentUser(withAccessToken: SpotifyConnectionManager.authToken) { (error, response) in
             if let user = response as? SPTUser {
                 
-                SPTPlaylistList.createPlaylist(withName: "\(setlist.artist.name) at \(setlist.venue.venueFullName()). \(Date.presentableDateFromDate(eventDate: setlist.eventDate))", forUser: user.canonicalUserName, publicFlag: true, accessToken: SpotifyConnectionManager.authToken) { (error, response) in
+                SPTPlaylistList.createPlaylist(withName: setlist.setlistPlaylistName(), forUser: user.canonicalUserName, publicFlag: true, accessToken: SpotifyConnectionManager.authToken) { (error, response) in
 
                     if let playlist = response as? SPTPlaylistSnapshot {
                 

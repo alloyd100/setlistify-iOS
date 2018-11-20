@@ -10,7 +10,7 @@ import UIKit
 import SpotifyLogin
 import KeyboardHelper
 import Spinner
-import  Alamofire
+import Alamofire
 
 
 class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate {
@@ -26,6 +26,14 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
     @IBOutlet weak var userTextfield: UITextField!
     
     @IBOutlet weak var spotifyLoginContainer: UIView!
+    
+    @IBOutlet weak var appleMusicContainer: UIView! {
+        didSet {
+            appleMusicContainer.makeViewCircle()
+        }
+    }
+    @IBOutlet weak var appleMusicLabel: UILabel!
+    @IBOutlet weak var appleMusicButton: UIButton!
     
     var keyboardHelper: KeyboardHelper!
 
@@ -113,7 +121,7 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
             }
         }
         
-        self.loginButton?.setTitle("Activated", for: .normal)
+        self.loginButton?.setTitle("Activated Spotify", for: .normal)
         self.loginButton?.isEnabled = false
         print("Login Succesful")
     }
@@ -129,6 +137,22 @@ class SearchViewController: UIViewController, KeyboardHelperDelegate, UITextFiel
     //MARK: Actions
     @IBAction func searchPressed(_ sender: Any) {
         search()
+    }
+    
+    @IBAction func activateAppleMusic(_ sender: Any) {
+        AppleMusicManager.appleMusicRequestPermission { (success) in
+            if success {
+                self.appleMusicLabel.text = "Apple Music Activated"
+                self.appleMusicButton.isEnabled = false
+            }
+            else {
+                let myalert = UIAlertController(title: "Sorry", message: "We couldn't connect to your Apple Music account. Please check you have a valid subscription.", preferredStyle: UIAlertControllerStyle.alert)
+                myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                    print("Selected")
+                })
+                self.present(myalert, animated: true)
+            }
+        }
     }
     
     func search() {

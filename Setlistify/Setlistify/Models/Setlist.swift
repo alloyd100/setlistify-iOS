@@ -53,7 +53,7 @@ extension Setlist: Serializable {
 
 extension Setlist {
     func setlistPlaylistName() -> String {
-        return "\(self.artist.name) at "
+        return "\(self.artist.name) at \(self.venue.venueFullName()). \(Date.presentableDateFromDate(eventDate: self.eventDate))"
     }
 }
 

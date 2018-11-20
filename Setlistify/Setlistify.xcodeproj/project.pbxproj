@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2332FA2F1FDAFBB400D94476 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */; };
+		23577C71218CB92200A48334 /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23577C70218CB92200A48334 /* AppleMusicManager.swift */; };
 		23C76BA61FD1A4C700D42FB5 /* SetlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA51FD1A4C700D42FB5 /* SetlistTableViewCell.swift */; };
 		23C76BA81FD1BC1E00D42FB5 /* SetlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */; };
 		23C76BAA1FD1C33900D42FB5 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA91FD1C33900D42FB5 /* SongTableViewCell.swift */; };
@@ -33,6 +34,10 @@
 		23D227841FCDBD26003F3B23 /* SpotifyLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D227831FCDBD26003F3B23 /* SpotifyLogin.framework */; };
 		23D227891FCDD189003F3B23 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D227881FCDD189003F3B23 /* Extensions.swift */; };
 		23D2278C1FCDE17A003F3B23 /* SetlistConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D2278B1FCDE17A003F3B23 /* SetlistConnectionManager.swift */; };
+		23D5B8042191F9CA009413DD /* AppleMusicConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5B8032191F9CA009413DD /* AppleMusicConnectionManager.swift */; };
+		23D5B806219202B0009413DD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D5B805219202B0009413DD /* CloudKit.framework */; };
+		23D5B809219207CD009413DD /* CreatePlaylistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5B808219207CD009413DD /* CreatePlaylistRequest.swift */; };
+		23D5B80B21920AF3009413DD /* CreatePlaylistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D5B80A21920AF3009413DD /* CreatePlaylistResponse.swift */; };
 		23DBE7291FD019A4006C290B /* Setlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DBE7281FD019A4006C290B /* Setlist.swift */; };
 		23DBE72B1FD06363006C290B /* SetlistSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DBE72A1FD06363006C290B /* SetlistSearchResponse.swift */; };
 		23DBE72D1FD06400006C290B /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DBE72C1FD06400006C290B /* Artist.swift */; };
@@ -44,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
+		23577C70218CB92200A48334 /* AppleMusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicManager.swift; sourceTree = "<group>"; };
 		23C76BA51FD1A4C700D42FB5 /* SetlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistTableViewCell.swift; sourceTree = "<group>"; };
 		23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistViewController.swift; sourceTree = "<group>"; };
 		23C76BA91FD1C33900D42FB5 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
@@ -78,6 +84,10 @@
 		23D227831FCDBD26003F3B23 /* SpotifyLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyLogin.framework; path = Carthage/Build/iOS/SpotifyLogin.framework; sourceTree = "<group>"; };
 		23D227881FCDD189003F3B23 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		23D2278B1FCDE17A003F3B23 /* SetlistConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistConnectionManager.swift; sourceTree = "<group>"; };
+		23D5B8032191F9CA009413DD /* AppleMusicConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicConnectionManager.swift; sourceTree = "<group>"; };
+		23D5B805219202B0009413DD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		23D5B808219207CD009413DD /* CreatePlaylistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistRequest.swift; sourceTree = "<group>"; };
+		23D5B80A21920AF3009413DD /* CreatePlaylistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistResponse.swift; sourceTree = "<group>"; };
 		23DBE7281FD019A4006C290B /* Setlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setlist.swift; sourceTree = "<group>"; };
 		23DBE72A1FD06363006C290B /* SetlistSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistSearchResponse.swift; sourceTree = "<group>"; };
 		23DBE72C1FD06400006C290B /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -92,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23D5B806219202B0009413DD /* CloudKit.framework in Frameworks */,
 				23C76BAF1FD7219800D42FB5 /* AVFoundation.framework in Frameworks */,
 				23D227641FCD8F63003F3B23 /* Cashier.framework in Frameworks */,
 				23D227651FCD8F63003F3B23 /* KeyboardHelper.framework in Frameworks */,
@@ -162,6 +173,7 @@
 		23D2275C1FCD8F63003F3B23 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23D5B805219202B0009413DD /* CloudKit.framework */,
 				23C76BB01FD7219800D42FB5 /* AVKit.framework */,
 				23D227831FCDBD26003F3B23 /* SpotifyLogin.framework */,
 				23D227741FCDAEB0003F3B23 /* SystemConfiguration.framework */,
@@ -193,13 +205,25 @@
 			children = (
 				23D2278B1FCDE17A003F3B23 /* SetlistConnectionManager.swift */,
 				23C76BAB1FD58B1700D42FB5 /* SpotifyConnectionManager.swift */,
+				23D5B8032191F9CA009413DD /* AppleMusicConnectionManager.swift */,
+				23577C70218CB92200A48334 /* AppleMusicManager.swift */,
 			);
 			path = ConnectionManagers;
+			sourceTree = "<group>";
+		};
+		23D5B807219207BB009413DD /* AppleMusic */ = {
+			isa = PBXGroup;
+			children = (
+				23D5B808219207CD009413DD /* CreatePlaylistRequest.swift */,
+				23D5B80A21920AF3009413DD /* CreatePlaylistResponse.swift */,
+			);
+			path = AppleMusic;
 			sourceTree = "<group>";
 		};
 		23DBE7271FD01972006C290B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				23D5B807219207BB009413DD /* AppleMusic */,
 				23DBE7281FD019A4006C290B /* Setlist.swift */,
 				23DBE7371FD1790C006C290B /* Set.swift */,
 				23DBE72A1FD06363006C290B /* SetlistSearchResponse.swift */,
@@ -312,13 +336,14 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Nodes.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SpotifyLogin.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Spinner.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Cider.framework",
 			);
 			name = Carthage;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -327,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23577C71218CB92200A48334 /* AppleMusicManager.swift in Sources */,
 				23DBE7321FD06494006C290B /* SetlistResultsViewController.swift in Sources */,
 				23C76BAE1FD5C10500D42FB5 /* SpotifySetlist.swift in Sources */,
 				23D227891FCDD189003F3B23 /* Extensions.swift in Sources */,
@@ -334,8 +360,10 @@
 				23DBE7361FD1783F006C290B /* Tour.swift in Sources */,
 				23C76BAC1FD58B1700D42FB5 /* SpotifyConnectionManager.swift in Sources */,
 				23D227821FCDB078003F3B23 /* BridgeViewController.m in Sources */,
+				23D5B80B21920AF3009413DD /* CreatePlaylistResponse.swift in Sources */,
 				23C76BA61FD1A4C700D42FB5 /* SetlistTableViewCell.swift in Sources */,
 				23DBE7341FD17640006C290B /* Venue.swift in Sources */,
+				23D5B8042191F9CA009413DD /* AppleMusicConnectionManager.swift in Sources */,
 				23DBE72D1FD06400006C290B /* Artist.swift in Sources */,
 				2332FA2F1FDAFBB400D94476 /* ImagePreviewViewController.swift in Sources */,
 				23C76BA81FD1BC1E00D42FB5 /* SetlistViewController.swift in Sources */,
@@ -344,6 +372,7 @@
 				23C76BAA1FD1C33900D42FB5 /* SongTableViewCell.swift in Sources */,
 				23D2278C1FCDE17A003F3B23 /* SetlistConnectionManager.swift in Sources */,
 				23DBE7291FD019A4006C290B /* Setlist.swift in Sources */,
+				23D5B809219207CD009413DD /* CreatePlaylistRequest.swift in Sources */,
 				23D2274B1FCD8BB2003F3B23 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,7 +520,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Setlistify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -522,7 +551,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Setlistify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",

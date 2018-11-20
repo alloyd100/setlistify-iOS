@@ -11,6 +11,7 @@ import Spinner
 import Kingfisher
 import MediaPlayer
 import SpotifyLogin
+import Cider
 
 class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate, MPMediaPickerControllerDelegate, UIViewControllerPreviewingDelegate {
     
@@ -56,8 +57,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     
     @IBOutlet weak var spotifyLogo: UIImageView!
     @IBOutlet weak var addSetlistButton: UIButton!
-    @IBOutlet weak var addSetlistWidthConstraint: NSLayoutConstraint!
-
+    
     var gradientLayer: CAGradientLayer?
     
     override func viewDidLoad() {
@@ -242,6 +242,28 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
             }
         }
 
+    }
+    
+    @IBAction func addSetlistToAppleMusic(_ sender: Any) {
+        guard let setlist = self.selectedSetList else { return }
+        
+        //let spinner = SpinnerView.showSpinner(inButton: self.appleMusicButton)
+        AppleMusicConnectionManager.addPlaylist(name: setlist.setlistPlaylistName()) { (response) in
+            
+            switch response.result {
+            case .success(let data):
+                
+                //spinner.dismiss()
+                let myalert = UIAlertController(title: "Playlist added", message: "Playlist added to Apple Music", preferredStyle: UIAlertControllerStyle.alert)
+                myalert.addAction(UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                    //do something
+                })
+                self.present(myalert, animated: true)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func addSetlist() {

@@ -42,7 +42,7 @@ extension UIView {
     }
     
     func makeViewCircle() {
-        self.layer.cornerRadius = self.bounds.size.width / 2
+        self.layer.cornerRadius = self.bounds.size.height / 2
         self.layer.masksToBounds = true
     }
     

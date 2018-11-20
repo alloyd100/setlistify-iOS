@@ -1,0 +1,11 @@
+framework module Cider {
+  umbrella header "Cider.h"
+
+  export *
+  module * { export * }
+}
+
+module Cider.Swift {
+    header "Cider-Swift.h"
+    requires objc
+}

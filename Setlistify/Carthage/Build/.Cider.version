@@ -1,0 +1,9 @@
+{
+  "commitish" : "0.10.0",
+  "iOS" : [
+    {
+      "name" : "Cider",
+      "hash" : "fe7be6dcf0833ddf10c56ccb7e4b62e262287d5b41e2ee3d917d593c1077b820"
+    }
+  ]
+}
