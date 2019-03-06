@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2332FA2F1FDAFBB400D94476 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */; };
 		23577C71218CB92200A48334 /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23577C70218CB92200A48334 /* AppleMusicManager.swift */; };
+		2375D4DC21A473350053BC7F /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375D4DB21A473340053BC7F /* UserManager.swift */; };
 		23C76BA61FD1A4C700D42FB5 /* SetlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA51FD1A4C700D42FB5 /* SetlistTableViewCell.swift */; };
 		23C76BA81FD1BC1E00D42FB5 /* SetlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */; };
 		23C76BAA1FD1C33900D42FB5 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C76BA91FD1C33900D42FB5 /* SongTableViewCell.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		2332FA2E1FDAFBB400D94476 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		23577C70218CB92200A48334 /* AppleMusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicManager.swift; sourceTree = "<group>"; };
+		2375D4DB21A473340053BC7F /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		23C76BA51FD1A4C700D42FB5 /* SetlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistTableViewCell.swift; sourceTree = "<group>"; };
 		23C76BA71FD1BC1E00D42FB5 /* SetlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetlistViewController.swift; sourceTree = "<group>"; };
 		23C76BA91FD1C33900D42FB5 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				23C76BAB1FD58B1700D42FB5 /* SpotifyConnectionManager.swift */,
 				23D5B8032191F9CA009413DD /* AppleMusicConnectionManager.swift */,
 				23577C70218CB92200A48334 /* AppleMusicManager.swift */,
+				2375D4DB21A473340053BC7F /* UserManager.swift */,
 			);
 			path = ConnectionManagers;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				23DBE7381FD1790C006C290B /* Set.swift in Sources */,
 				23DBE7361FD1783F006C290B /* Tour.swift in Sources */,
 				23C76BAC1FD58B1700D42FB5 /* SpotifyConnectionManager.swift in Sources */,
+				2375D4DC21A473350053BC7F /* UserManager.swift in Sources */,
 				23D227821FCDB078003F3B23 /* BridgeViewController.m in Sources */,
 				23D5B80B21920AF3009413DD /* CreatePlaylistResponse.swift in Sources */,
 				23C76BA61FD1A4C700D42FB5 /* SetlistTableViewCell.swift in Sources */,
