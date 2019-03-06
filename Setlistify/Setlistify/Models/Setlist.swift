@@ -86,8 +86,8 @@ extension SetsWrapper {
         return count
     }
     
-    func fullSongSpotifyIds() -> [Any] {
-        var result: [Any] = []
+    func fullSongSpotifyIds() -> [SPTTrack] {
+        var result: [SPTTrack] = []
         for set in self.setArray {
             for song in set.song {
                 if let sTrack = song.spotifyTrack {

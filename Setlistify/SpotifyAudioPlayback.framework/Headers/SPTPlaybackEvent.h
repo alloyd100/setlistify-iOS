@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, SpPlaybackEvent) {
 	/**
 	 * \brief Playback has started or has resumed
 	 * \see SpPlaybackPlay, SpPlaybackIsPlaying, \ref observing
@@ -204,9 +204,9 @@ typedef enum : NSUInteger {
 	 *
 	 */
 	SPPlaybackNotifyMetadataChanged,
-} SpPlaybackEvent;
+};
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, SpErrorCode) {
 	/** \brief The operation was successful. */
 	SPErrorOk = 0,
 
@@ -369,7 +369,7 @@ typedef enum : NSUInteger {
 	 * This error is only relevant for builds with offline storage enabled.
 	 */
 	SPPrefetchDownloadFailed,
-} SpErrorCode;
+};
 
 NSError * NSErrorFromSPErrorCode(SpErrorCode code);
 

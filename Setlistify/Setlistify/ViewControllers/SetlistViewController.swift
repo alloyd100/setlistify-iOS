@@ -419,10 +419,9 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
                     
                     var albumString = optionalAlbumString
                     var url: URL?
-                    if let album = sptTrack.album {
-                        albumString = album.name
-                        url = album.largestCover.imageURL
-                    }
+                    let album = sptTrack.album
+                    albumString = album.name
+                    url = album.largestCover.imageURL
                     cell.populateCell(with: song.name, albumName: albumString, imageURL: url, info: song.fullInfo(), spotifySupport: true, playing: playingThisSong)
                 }
                 else {
@@ -487,9 +486,8 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
                 guard let player = self.player else { return }
                 
                 var isPlaying = true
-                if let state = player.playbackState {
-                    isPlaying = state.isPlaying
-                }
+                let state = player.playbackState
+                isPlaying = state.isPlaying
 
                 if isPlaying {
                     
@@ -571,9 +569,8 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
         if let track = trackForIndexPath(indexPath: indexPath) {
 
             var url: URL?
-            if let album = track.album {
-                url = album.largestCover.imageURL
-            }
+            let album = track.album
+            url = album.largestCover.imageURL
             
             detailVC.imageurl = url
         }
@@ -712,8 +709,7 @@ class SetlistViewController: UITableViewController, SPTAudioStreamingPlaybackDel
     }
     
     func queueTrack(track: SPTTrack) {
-        guard let trackID = track.identifier
-            else { return }
+        let trackID = track.identifier
         self.player?.queueSpotifyURI("spotify:track:" + trackID, callback: { (error) in
             if error != nil {
                 print("failed")

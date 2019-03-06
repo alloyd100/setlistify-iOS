@@ -1,5 +1,5 @@
 /*
- Copyright 2015 Spotify AB
+ Copyright 2017 Spotify AB
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -18,12 +18,10 @@
 #import "SPTRequest.h"
 #import "SPTListPage.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** This class provides helpers for using the search features in the Spotify API, See: https://developer.spotify.com/web-api/console/search/ */
 @interface SPTSearch : NSObject
-
-
-
-
 
 ///----------------------------
 /// @name Search
@@ -36,15 +34,15 @@
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
  @param offset The index at which to start returning results.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param market Either a ISO 3166-1 country code to filter the results to, or "from_token" (`SPTMarketFromToken`) to pick the market from the session (requires the `user-read-private` scope), or `nil` for no market filtering.
  @param block The block to be called when the operation is complete. The block will pass an `SPTListPage` containing results on success, otherwise an error.
  */
 +(void)performSearchWithQuery:(NSString *)searchQuery
 					queryType:(SPTSearchQueryType)searchQueryType
 					   offset:(NSInteger)offset
-				  accessToken:(NSString *)accessToken
-					   market:(NSString *)market
+				  accessToken:(NSString * _Nullable)accessToken
+					   market:(NSString * _Nullable)market
 					 callback:(SPTRequestCallback)block;
 
 /** Create a request for searching with a given query, offset and market filtering
@@ -52,16 +50,16 @@
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
  @param offset The index at which to start returning results.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param market Either a ISO 3166-1 country code to filter the results to, or "from_token" (`SPTMarketFromToken`) to pick the market from the session (requires the `user-read-private` scope), or `nil` for no market filtering.
  @param error An optional pointer to an `NSError` that will receive the error code if operation failed.
  */
 +(NSURLRequest*)createRequestForSearchWithQuery:(NSString *)searchQuery
 									  queryType:(SPTSearchQueryType)searchQueryType
 										 offset:(NSInteger)offset
-									accessToken:(NSString *)accessToken
-										 market:(NSString *)market
-										  error:(NSError**)error;
+									accessToken:(NSString * _Nullable)accessToken
+										 market:(NSString * _Nullable)market
+										  error:(NSError** _Nullable)error;
 
 /** Performs a search with a given query and market filtering
  
@@ -69,29 +67,29 @@
  
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param market Either a ISO 3166-1 country code to filter the results to, or `from_token` to pick the market from the session (requires the `user-read-private` scope), or `nil` for no market filtering.
  @param block The block to be called when the operation is complete. The block will pass an `SPTListPage` containing results on success, otherwise an error.
  */
 +(void)performSearchWithQuery:(NSString *)searchQuery
 					queryType:(SPTSearchQueryType)searchQueryType
-				  accessToken:(NSString *)accessToken
-					   market:(NSString *)market
+				  accessToken:(NSString * _Nullable)accessToken
+					   market:(NSString * _Nullable)market
 					 callback:(SPTRequestCallback)block;
 
 /** Createa a query for searching with a given query and market filtering
  
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param market Either a ISO 3166-1 country code to filter the results to, or `from_token` to pick the market from the session (requires the `user-read-private` scope), or `nil` for no market filtering.
  @param error An optional pointer to an `NSError` that will receive the error code if operation failed.
  */
 + (NSURLRequest*)createRequestForSearchWithQuery:(NSString *)searchQuery
 									   queryType:(SPTSearchQueryType)searchQueryType
-									 accessToken:(NSString *)accessToken
-										  market:(NSString *)market
-										   error:(NSError**)error;
+									 accessToken:(NSString * _Nullable)accessToken
+										  market:(NSString * _Nullable)market
+										   error:(NSError** _Nullable)error;
 
 /** Performs a search with a given query and offset
  
@@ -100,13 +98,13 @@
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
  @param offset The index at which to start returning results.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param block The block to be called when the operation is complete. The block will pass an `SPTListPage` containing results on success, otherwise an error.
  */
 + (void)performSearchWithQuery:(NSString *)searchQuery
 					 queryType:(SPTSearchQueryType)searchQueryType
 						offset:(NSInteger)offset
-				   accessToken:(NSString *)accessToken
+				   accessToken:(NSString * _Nullable)accessToken
 					  callback:(SPTRequestCallback)block;
 
 /** Create a request for searching with a given query and offset
@@ -114,14 +112,14 @@
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
  @param offset The index at which to start returning results.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param error An optional pointer to an `NSError` that will receive the error code if operation failed.
  */
 + (NSURLRequest*)createRequestForSearchWithQuery:(NSString *)searchQuery
 									   queryType:(SPTSearchQueryType)searchQueryType
 										  offset:(NSInteger)offset
-									 accessToken:(NSString *)accessToken
-										   error:(NSError**)error;
+									 accessToken:(NSString * _Nullable)accessToken
+										   error:(NSError** _Nullable)error;
 
 /** Performs a search with a given query.
  
@@ -129,29 +127,25 @@
 
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param block The block to be called when the operation is complete. The block will pass an `SPTListPage` containing results on success, otherwise an error.
  */
 + (void)performSearchWithQuery:(NSString *)searchQuery
 					 queryType:(SPTSearchQueryType)searchQueryType
-				   accessToken:(NSString *)accessToken
+				   accessToken:(NSString * _Nullable)accessToken
 					  callback:(SPTRequestCallback)block;
 
 /** Create a request for searching with a given query.
  
  @param searchQuery The query to pass to the search.
  @param searchQueryType The type of search to do.
- @param accessToken A valid access token.
+ @param accessToken A valid access token, or `nil`.
  @param error An optional pointer to an `NSError` that will receive the error code if operation failed.
  */
 + (NSURLRequest*)createRequestForSearchWithQuery:(NSString *)searchQuery
 									   queryType:(SPTSearchQueryType)searchQueryType
-									 accessToken:(NSString *)accessToken
-										   error:(NSError**)error;
-
-
-
-
+									 accessToken:(NSString * _Nullable)accessToken
+										   error:(NSError** _Nullable)error;
 
 ///------------------------------
 /// @name Parsers / Deserializers
@@ -166,9 +160,9 @@
  @return The list of search results as an `SPTListPage` object
  */
 + (SPTListPage *)searchResultsFromData:(NSData *)data
-						  withResponse:(NSURLResponse *)response
+						  withResponse:(NSURLResponse * _Nullable)response
 							 queryType:(SPTSearchQueryType)searchQueryType
-								 error:(NSError **)error;
+								 error:(NSError ** _Nullable)error;
 
 /** Parse the response from createRequestForSearch into a list of search results
  
@@ -179,6 +173,8 @@
  */
 + (SPTListPage *)searchResultsFromDecodedJSON:(id)decodedObject
 									queryType:(SPTSearchQueryType)searchQueryType
-										error:(NSError **)error;
+										error:(NSError ** _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
